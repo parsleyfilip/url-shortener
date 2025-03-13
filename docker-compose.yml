@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  url-shortener:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - MONGODB_URI=mongodb://mongo:27017
+      - MONGODB_DATABASE=url_shortener
+    depends_on:
+      - mongo
+    restart: always
+    networks:
+      - url-shortener-network
+
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - url-shortener-network
+
+networks:
+  url-shortener-network:
+    driver: bridge
+
+volumes:
+  mongo-data: 
