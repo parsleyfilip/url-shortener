@@ -1,6 +1,7 @@
 # URL Shortener
 
 A simple URL shortener service built with Go and MongoDB.
+I made this for a friend!
 
 ## Features
 
